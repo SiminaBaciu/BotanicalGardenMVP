@@ -15,4 +15,6 @@ public interface UserInterface {
     public String getSpeciesField();
 
     public JScrollPane getScrollPane();
+
+    public String getNameField();
 }

@@ -31,5 +31,11 @@ public class UserPresenter {
         return plantDAO.createTable();
     }
 
+    public JTable createSearchByNameTable(){
+        String name = userInterface.getNameField();
+        System.out.println(userInterface.getNameField());
+        return plantDAO.createSearchedByNameTable(name);
+
+    }
 
 }

@@ -15,6 +15,8 @@ public class UserView extends JFrame implements UserInterface {
     Container container = getContentPane();
     private JLabel carnivoreLabel = new JLabel("Carnivore: ");
     private JTextField carnivoreField = new JTextField();
+    private JLabel nameLabel = new JLabel("Name: ");
+    private JTextField nameField = new JTextField();
     private JLabel zoneLabel = new JLabel("Zone: ");
     private JTextField zoneField = new JTextField();
     private JLabel typeLabel = new JLabel("Type: ");
@@ -26,6 +28,7 @@ public class UserView extends JFrame implements UserInterface {
     private JButton sortByType = new JButton("Sort Type");
     private JButton sortBySpecies = new JButton("Sort Species");
     private JButton filter = new JButton("Filter");
+    private JButton search = new JButton("Search");
     private JScrollPane scrollPane = new JScrollPane();
 
     UserPresenter userPresenter = null;
@@ -69,10 +72,14 @@ public class UserView extends JFrame implements UserInterface {
         speciesLabel.setBounds(580, 30, 100, 30);
         speciesField.setBounds(630, 30, 125, 30);
 
+        nameLabel.setBounds(700, 70, 100, 30);
+        nameField.setBounds(680, 70, 125, 30);
+
         sortByType.setBounds(200, 520, 100, 50);
         sortBySpecies.setBounds(330, 520, 100, 50);
         filter.setBounds(460, 520, 100, 50);
         back.setBounds(590, 520, 100, 50);
+        search.setBounds(650,520, 100, 50);
         back.addActionListener(e -> {
             setVisible(false);
 
@@ -89,14 +96,17 @@ public class UserView extends JFrame implements UserInterface {
         container.add(carnivoreLabel);
         container.add(zoneField);
         container.add(typeField);
+        container.add(nameField);
         container.add(zoneLabel);
         container.add(typeLabel);
+        container.add(nameLabel);
         container.add(speciesField);
         container.add(speciesLabel);
         container.add(sortByType);
         container.add(sortBySpecies);
         container.add(filter);
         container.add(back);
+        container.add(search);
         container.add(scrollPane);
 
 
@@ -127,6 +137,14 @@ public class UserView extends JFrame implements UserInterface {
             }
         });
 
+        search.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTable table = userPresenter.createSearchByNameTable();
+                getScrollPane().setViewportView(table);
+                setVisible(true);
+            }
+        });
 
     }
 
@@ -161,5 +179,7 @@ public class UserView extends JFrame implements UserInterface {
         return this.scrollPane;
     }
 
-
+    public String getNameField() {
+        return nameField.getText();
+    }
 }
